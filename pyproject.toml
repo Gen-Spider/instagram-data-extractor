@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "instagram-data-extractor"
+version = "1.0.0"
+authors = [{name = "Git-Spider", email = "noreply@github.com"}]
+description = "A Python-based Instagram data extraction tool"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["instagram", "data-extraction", "scraping", "social-media", "automation"]
+license = {text = "MIT"}
+dynamic = ["dependencies"]
+
+[project.urls]
+"Homepage" = "https://github.com/Gen-Spider/instagram-data-extractor"
+"Bug Reports" = "https://github.com/Gen-Spider/instagram-data-extractor/issues"
+"Source" = "https://github.com/Gen-Spider/instagram-data-extractor"
+"Documentation" = "https://github.com/Gen-Spider/instagram-data-extractor#readme"
+
+[project.scripts]
+instagram-extractor = "instagram_extractor:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "flake8>=6.0",
+    "mypy>=1.0",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["instagram_extractor*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312', 'py313']
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
